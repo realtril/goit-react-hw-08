@@ -5,7 +5,6 @@ const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
-
   unset() {
     axios.defaults.headers.common.Authorization = "";
   },
@@ -19,7 +18,6 @@ export const registerOperation = (userData) => async (dispatch) => {
     );
     token.set(result.data.token);
     dispatch(authActions.registerSuccess(result.data));
-    console.log(result.data);
   } catch (error) {
     dispatch(authActions.registerError(error));
   }
@@ -39,13 +37,14 @@ export const loginOperation = (userData) => async (dispatch) => {
   }
 };
 
-const logOut = () => (dispatch) => {
+const logOut = () => async (dispatch) => {
   dispatch(authActions.logoutRequest());
   axios
     .post("https://goit-phonebook-api.herokuapp.com/users/logout")
-    .then(() => {
+    .then((data) => {
       token.unset();
       dispatch(authActions.logoutSuccess());
+      console.log(data);
     })
     .catch((error) => dispatch(authActions.logoutError(error)));
 };
@@ -54,16 +53,16 @@ const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
-
   if (!persistedToken) {
     return;
   }
-
   token.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
-    const result = await axios.get("/users/current");
-    dispatch(authActions.getCurrentUserSeccess(result.data));
+    const result = await axios.get(
+      "https://goit-phonebook-api.herokuapp.com/users/current"
+    );
+    dispatch(authActions.getCurrentUserSuccess(result.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error));
   }

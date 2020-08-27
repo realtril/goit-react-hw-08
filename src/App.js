@@ -13,12 +13,14 @@ import Private from "./routes/Private";
 import { connect } from "react-redux";
 import routes from "./routes/routes";
 import contactOperations from "./operations/contactOperations";
+import authOperations from "./operations/auth";
 
 import "./App.css";
 
 class App extends Component {
   componentDidMount() {
     this.props.onFetch();
+    this.props.onGetCurrentUser();
   }
 
   render() {
@@ -51,6 +53,7 @@ class App extends Component {
 
 const mapDispatchToProps = {
   onFetch: contactOperations.getContacts,
+  onGetCurrentUser: authOperations.getCurrentUser,
 };
 
 export default connect(null, mapDispatchToProps)(App);
