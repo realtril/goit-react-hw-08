@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+body:before {
+  content: "";
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://image.ibb.co/jGk9RR/bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  filter: blur(3px);
+  z-index: -9;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin-top: 20px;
+  color: white;
+  font-size: 24px;
+}
+p > a {
+  font-size: 24px;
+  text-decoration: underline;
+}
