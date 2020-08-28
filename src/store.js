@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { combineReducers, applyMiddleware } from "redux";
+import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -12,7 +12,6 @@ import {
   PURGE,
 } from "redux-persist";
 import authReduser from "./reducers/authReducers";
-import thunk from "redux-thunk";
 import reducers from "./reducers/reducers";
 
 const itemsReducer = combineReducers({

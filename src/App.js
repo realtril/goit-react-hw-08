@@ -1,5 +1,5 @@
-import React, { useEffect, Component, Suspense } from "react";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import React, { Component } from "react";
+import { Switch, Redirect } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Contacts from "./containers/Contacts/Contacts";
 import Login from "./containers/Login/Login";
@@ -7,11 +7,9 @@ import Register from "./containers/Register/Register";
 import Home from "./containers/Home/Home";
 import { navigation } from "./constants/constants";
 import Header from "./Components/Header/Header";
-import { useSelector } from "react-redux";
 import Public from "./routes/Public";
 import Private from "./routes/Private";
 import { connect } from "react-redux";
-import routes from "./routes/routes";
 import contactOperations from "./operations/contactOperations";
 import authOperations from "./operations/auth";
 
